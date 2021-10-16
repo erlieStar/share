@@ -62,6 +62,7 @@ public class ShareController {
     @SneakyThrows
     @RequestMapping("errorWait")
     public String errorWait() {
+        System.out.println("errorWait");
         CountDownLatch latch = new CountDownLatch(5);
         for (int i = 0; i < 5; i++) {
             final int index = i;
@@ -70,8 +71,8 @@ public class ShareController {
                     latch.countDown();
                 }
             });
-            latch.await();
         }
+        latch.await();
         return "success";
     }
 }
